@@ -26,12 +26,20 @@ public class MOOverWatchLoadingView: UIView {
         }
     }
 
+    private var isAutoStartAnimation = true
+
     public convenience init() {
         self.init(frame: CGRect.zero)
     }
 
+    public convenience init(frame: CGRect, autoStartAnimation: Bool) {
+        self.init(frame: frame)
+        isAutoStartAnimation = autoStartAnimation
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        if frame == CGRect.zero { return }
         createLayers()
     }
 
@@ -316,7 +324,9 @@ public class MOOverWatchLoadingView: UIView {
             1.0
         ]
 
-        startAnimation()
+        if isAutoStartAnimation {
+            startAnimation()
+        }
     }
 
     func startAnimation() {
