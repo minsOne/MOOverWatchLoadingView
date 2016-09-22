@@ -2,6 +2,7 @@
 [![License](https://img.shields.io/cocoapods/l/DOFavoriteButton.svg?style=flat)](https://github.com/minsOne/MOOverWatchLoadingView/blob/master/LICENSE)
 
 Animation like OverWatch Loading written in Swift.
+
 ![Demo](https://raw.githubusercontent.com/minsOne/MOOverWatchLoadingView/master/resource/demo.gif)
 
 ## Requirements
