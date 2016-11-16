@@ -7,7 +7,7 @@ Animation like OverWatch Loading written in Swift.
 
 ## Requirements
 * iOS 7.0+
-* Swift 2.2
+* Swift 3.0
 
 ## Installation
 #### Manual
