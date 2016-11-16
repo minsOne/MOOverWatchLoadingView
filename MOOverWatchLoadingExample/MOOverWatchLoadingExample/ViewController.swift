@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        loadingView = MOOverWatchLoadingView(frame: CGRectMake(0, 0, view.frame.width, view.frame.width),
+        loadingView = MOOverWatchLoadingView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width),
                                              autoStartAnimation: true)
         self.view.addSubview(loadingView)
     }
