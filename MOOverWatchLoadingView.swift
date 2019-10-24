@@ -6,7 +6,7 @@ public class MOOverWatchLoadingView: UIView {
 
     @IBInspectable var circleColor: UIColor! = UIColor(red: 255/255, green: 172/255, blue: 51/255, alpha: 1.0) {
         didSet {
-            outerCircleShape.fillColor = circleColor.CGColor
+            outerCircleShape.fillColor = circleColor.cgColor
         }
     }
 
@@ -62,22 +62,22 @@ public class MOOverWatchLoadingView: UIView {
         // hexagon layer
         //===============
         let hexagonPath = UIBezierPath()
-        hexagonPath.moveToPoint(CGPoint(x: x, y: 0))
-        hexagonPath.addLineToPoint(CGPoint(x: 0, y: _frame.size.height/4))
-        hexagonPath.addLineToPoint(CGPoint(x: 0, y: _frame.size.height/4*3))
-        hexagonPath.addLineToPoint(CGPoint(x: x, y: _frame.size.height))
-        hexagonPath.addLineToPoint(CGPoint(x: x*2, y: _frame.size.height/4*3))
-        hexagonPath.addLineToPoint(CGPoint(x: x*2, y: _frame.size.height/4))
-        hexagonPath.addLineToPoint(CGPoint(x: x, y: 0))
-        hexagonPath.closePath()
+        hexagonPath.move(to: CGPoint(x: x, y: 0))
+        hexagonPath.addLine(to: CGPoint(x: 0, y: _frame.size.height/4))
+        hexagonPath.addLine(to: CGPoint(x: 0, y: _frame.size.height/4*3))
+        hexagonPath.addLine(to: CGPoint(x: x, y: _frame.size.height))
+        hexagonPath.addLine(to: CGPoint(x: x*2, y: _frame.size.height/4*3))
+        hexagonPath.addLine(to: CGPoint(x: x*2, y: _frame.size.height/4))
+        hexagonPath.addLine(to: CGPoint(x: x, y: 0))
+        hexagonPath.close()
 
         hexagonShapes = (0 ..< 7).map { _ in
             let hexagonShape = CAShapeLayer()
             hexagonShape.frame = CGRect(x: 0, y: 0, width: x * 2, height: _frame.size.height)
-            hexagonShape.fillColor = UIColor.whiteColor().CGColor
+            hexagonShape.fillColor = UIColor.white.cgColor
             hexagonShape.masksToBounds = true
-            hexagonShape.path = hexagonPath.CGPath
-            hexagonShape.strokeColor = UIColor.whiteColor().CGColor
+            hexagonShape.path = hexagonPath.cgPath
+            hexagonShape.strokeColor = UIColor.white.cgColor
             return hexagonShape
         }
 
@@ -109,13 +109,13 @@ public class MOOverWatchLoadingView: UIView {
             ani.duration = hexagonAnimationDuration
             ani.repeatCount = .infinity
             ani.values = [
-                NSValue(CATransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)),
-                NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0)),
-                NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0)),
-                NSValue(CATransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)),
-                NSValue(CATransform3D: CATransform3DIdentity)
+                NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)),
+                NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0)),
+                NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0)),
+                NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)),
+                NSValue(caTransform3D: CATransform3DIdentity)
             ]
-            return ani
+            return [ani]
         }
 
         hexagonTransforms[0].keyTimes = [
@@ -186,9 +186,9 @@ public class MOOverWatchLoadingView: UIView {
         outerCircleShape = CAShapeLayer()
         outerCircleShape.frame = bounds
         outerCircleShape.masksToBounds = true
-        outerCircleShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).CGColor
-        outerCircleShape.path = CGPathCreateWithEllipseInRect(rectForRing, nil)
-        outerCircleShape.fillColor = UIColor.clearColor().CGColor
+        outerCircleShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).cgColor
+        outerCircleShape.path = CGPath(ellipseIn: rectForRing, transform: nil)
+        outerCircleShape.fillColor = UIColor.clear.cgColor
         outerCircleShape.lineWidth = circleLineWidth
         self.layer.addSublayer(outerCircleShape)
 
@@ -198,21 +198,21 @@ public class MOOverWatchLoadingView: UIView {
         //===============
         let curveAngle = M_PI_2/3   // 30 degree
         let arcPath1 = UIBezierPath()
-        arcPath1.addArcWithCenter(_center,
+        arcPath1.addArc(withCenter: _center,
                                   radius: _center.x-circleLineWidth - curveLineWidth * 3,
                                   startAngle: CGFloat(M_PI * 3 / 2 - curveAngle),
                                   endAngle: CGFloat(M_PI * 3 / 2 + curveAngle),
                                   clockwise: true)
 
         let arcPath2 = UIBezierPath()
-        arcPath2.addArcWithCenter(_center,
+        arcPath2.addArc(withCenter: _center,
                                   radius: _center.x-circleLineWidth - curveLineWidth * 3,
                                   startAngle: 0,
                                   endAngle: CGFloat(curveAngle * 2),
                                   clockwise: true)
 
         let arcPath3 = UIBezierPath()
-        arcPath3.addArcWithCenter(_center,
+        arcPath3.addArc(withCenter: _center,
                                   radius: _center.x-circleLineWidth - curveLineWidth * 3,
                                   startAngle: CGFloat(M_PI - curveAngle * 2),
                                   endAngle: CGFloat(M_PI),
@@ -223,9 +223,9 @@ public class MOOverWatchLoadingView: UIView {
             let curveShape = CAShapeLayer()
             curveShape.frame = bounds
             curveShape.masksToBounds = true
-            curveShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).CGColor
-            curveShape.path = path.CGPath
-            curveShape.fillColor = UIColor.clearColor().CGColor
+            curveShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).cgColor
+            curveShape.path = path.cgPath
+            curveShape.fillColor = UIColor.clear.cgColor
             curveShape.lineWidth = curveLineWidth
             return curveShape
         }
@@ -244,7 +244,7 @@ public class MOOverWatchLoadingView: UIView {
         // inner circle layer
         //===============
         let innerCirclePath = UIBezierPath()
-        innerCirclePath.addArcWithCenter(_center,
+        innerCirclePath.addArc(withCenter: _center,
                                          radius: _center.x - _frame.height,
                                          startAngle: CGFloat(M_PI * 3 / 2),
                                          endAngle: CGFloat(M_PI * 3 / 2 + M_PI * 2),
@@ -253,9 +253,9 @@ public class MOOverWatchLoadingView: UIView {
         innerCircleShape = CAShapeLayer()
         innerCircleShape.frame = bounds
         innerCircleShape.masksToBounds = true
-        innerCircleShape.path = innerCirclePath.CGPath
-        innerCircleShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).CGColor
-        innerCircleShape.fillColor = UIColor.clearColor().CGColor
+        innerCircleShape.path = innerCirclePath.cgPath
+        innerCircleShape.strokeColor = UIColor(red:0.71, green:0.85, blue:1.00, alpha:1.00).cgColor
+        innerCircleShape.fillColor = UIColor.clear.cgColor
         innerCircleShape.lineWidth = curveLineWidth * 1.5
         innerCircleShape.strokeStart = 0
         innerCircleShape.strokeEnd = 1
@@ -331,13 +331,13 @@ public class MOOverWatchLoadingView: UIView {
 
     func startAnimation() {
         CATransaction.begin()
-        innerCircleShape.addAnimation(innerCircleLineStrokeStart, forKey: "strokeStart")
-        innerCircleShape.addAnimation(innerCircleLineStrokeEnd, forKey: "strokeEnd")
+        innerCircleShape.add(innerCircleLineStrokeStart, forKey: "strokeStart")
+        innerCircleShape.add(innerCircleLineStrokeEnd, forKey: "strokeEnd")
         curveShapes.forEach {
-            $0.addAnimation(curveRotationTransform, forKey: nil)
+            $0.add(curveRotationTransform, forKey: nil)
         }
-        hexagonShapes.enumerate().forEach { (idx, shape) in
-            shape.addAnimation(hexagonTransforms[idx], forKey: "transform")
+        hexagonShapes.enumerated().forEach { (idx, shape) in
+            shape.add(hexagonTransforms[idx], forKey: "transform")
         }
         CATransaction.commit()
     }
